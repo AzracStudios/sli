@@ -36,6 +36,15 @@
     cursorPosition.set(element.selectionStart);
   };
 
+  const handleKeyPress = (e: KeyboardEvent) => {
+    if (e.key.includes("Arrow")) {
+      cursorPosition.set(
+        (document.querySelector("textarea") as HTMLTextAreaElement)
+          .selectionStart
+      );
+    }
+  };
+
   saveTrigger.subscribe((val) => {
     if (val) {
       srcCode.set(src);
@@ -61,6 +70,8 @@
   });
 </script>
 
+<svelte:window on:keypress={(e) => handleKeyPress(e)} />
+
 <div class="editor">
   <div class="char_bar">
     <div class="row">
@@ -85,7 +96,7 @@
     <div class="input_wrapper">
       <textarea
         spellcheck="false"
-        rows="{src?.split("\n").length}"
+        rows={src?.split("\n").length}
         on:input={(e) => handleChange(e)}
         on:click={(e) => handleSelection(e)}
         value={src || ""}
