@@ -12,7 +12,7 @@
 <div class="console">
   <div class="head">
     <p>Output</p>
-    <button on:click={() => (consoleLines = [])}>Clear</button>
+    <button on:click={() => (output.set([]))}>Clear</button>
   </div>
 
   <div class="output">
@@ -29,8 +29,8 @@
     background-color: #282c34;
 
     resize: horizontal;
-    border-left: 5px solid #2e333b;
     padding-inline: 1rem;
+    z-index: 11;
   }
 
   .head {

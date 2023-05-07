@@ -23,6 +23,8 @@
   };
 
   const deleteFile = (fileToDelete: string) => {
+    if (!confirm(`Are you sure you want to delete ${fileToDelete}?`)) return;
+    
     let existingFiles = getFilesFromStorage();
     delete existingFiles[fileToDelete];
     localStorage.setItem("files", JSON.stringify(existingFiles));
@@ -30,7 +32,7 @@
 
     if (get(fileName) !== fileToDelete) return;
     fileDoesExist.set(false);
-    fileName.set("untitled.sli")
+    fileName.set("untitled.sli");
     unsavedChangeTrigger.set(true);
   };
 

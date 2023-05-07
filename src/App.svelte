@@ -1,7 +1,7 @@
 <script lang="ts">
   import { get } from "svelte/store";
   import Console from "./components/console.svelte";
-  import Editor from "./components/editor.svelte";
+  import Editor from "./components/editor/editor.svelte";
   import Menu from "./components/menu.svelte";
   import {
     fileDoesExist,
@@ -73,6 +73,7 @@
     display: flex;
     width: 100svw;
     height: calc(100% - 3rem);
+    overflow: hidden;
   }
 
   @media only screen and (max-width: 600px) {
@@ -80,4 +81,6 @@
       flex-direction: column;
     }
   }
+
+  
 </style>
