@@ -1,5 +1,5 @@
 import { get } from "svelte/store";
-import { runCode } from "../language/main";
+import { runCode } from "../language/sli";
 import { srcCode, unsavedChangeTrigger } from "../store";
 
 export const run = () => {

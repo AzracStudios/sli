@@ -46,11 +46,11 @@ export const highlight = (src: string) => {
     let val = "";
     switch (char) {
       case " ":
-        return code("space", " ");
+        return code("space", " ");
       case "\n":
         return code("nl", " ");
       case '"':
-        val += '"';
+        val = '"';
         advance();
         if (char == '"') return code("string", '""');
 
@@ -58,7 +58,8 @@ export const highlight = (src: string) => {
           val += char;
           advance();
         }
-        return code("string", val + '"');
+
+        return code("string", char == '"' ? `${val}"` : val);
 
       case "#":
         val = "#";
@@ -122,8 +123,7 @@ export const highlight = (src: string) => {
         }
 
         shouldAdvanceNextIttr = false;
-        if (keywords.includes(val)) return code("kwrd", val);
-        return code("ident", val);
+        return code(keywords.includes(val) ? "kwrd" : "ident", val);
 
       case includes(char, numbers):
         val = char;

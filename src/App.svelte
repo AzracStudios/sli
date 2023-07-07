@@ -41,6 +41,11 @@
 
 <svelte:window
   on:beforeunload={() => {
+    if (
+      !get(fileDoesExist) ||
+      !Object.keys(getFilesFromStorage()).includes(get(fileName))
+    )
+      return;
     // Keep track of the file that is currently being edited before exit
     localStorage.setItem("last_file", JSON.stringify(get(fileName)));
   }}
@@ -81,6 +86,4 @@
       flex-direction: column;
     }
   }
-
-  
 </style>
